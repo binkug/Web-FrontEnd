@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>연산자</title>
+<script>
+	var n = 0;
+	//읽으면서 수행 : 동적 바인딩 언어
+	//정적 바인딩 언어 : 전부 읽고 난 후 값을 대입하고 난 후 ++나 --가 앞에 있으면 증감을 하고 명령을 수행 
+	var result = ++n + ++n;
+	document.writeln("<p>결과:" + result + "</p>");
+	
+	var n1 = 20; //00000000 00010100
+	var n2 = 17; //00000000 00010001
+	
+	console.log(n1 & n2); //16
+	console.log(n1 | n2); //21
+	console.log(n1 ^ n2); //5
+	
+	document.writeln("200"==200); //값만 확인 하므로 true
+	document.writeln("200"===200); // 자료형이 달라서 false
+	
+	var x1 = null; // null
+	var x2; //undefined
+	
+	document.writeln(x1==x2); //값만 확인해서 true
+	document.writeln(x1===x2); //자료형이 달라서 false
+		
+	var ar = ["Java","C","C++","Python","JavaScript","C#","Swuft","Kotlin","Ruby"
+		,"PHP","SQL","Closure","Haskell","GoLang","Scala"];
+	console.log(ar);
+	//9번 삭제
+	delete ar[9];
+	console.log(ar);
+	console.log(ar[9]);
+</script>
+</head>
+<body>
+
+</body>
+</html>

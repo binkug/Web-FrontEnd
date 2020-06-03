@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>제어문</title>
+
+<script>
+	var score = 87;
+	//score 가 60이상이면 합격 아니면 불합격이라고 출력
+	//document.write("합격<br/>");
+	if(score >= 60){
+		document.write("합격<br/>");
+	}else{
+		document.write("불합격<br/>");
+	}
+	//score 가 80 이상이면 우수
+	if(score >= 80){
+		document.write("우수<br/>");
+	
+	}else if(score < 80 && score >= 60){
+		//scroe가 80보다는 적고 60 이상이면 보통
+		document.write("보통<br/>");
+	}else{
+		//score가 60미만이면 부진이라고 출력
+		document.write("부진<br/>");
+	}
+	
+	var menu = 4;
+	//메뉴의 값이 1이면 해장국
+	//menu의 값이 2이면 육개장
+	//menu의 값이 3이면 냉모밀
+	//menu의 값이 4이면 짜장면
+	//나머지는 설렁탕
+	var china = 4;
+	switch (menu) {
+	case 1:
+		document.write("해장국<br/>");
+		break;
+	case 2:
+		document.write("육개장<br/>");
+		break;
+	case 3:
+		document.write("냉모밀<br/>");
+		break;
+	case china :
+		document.write("짜장면<br/>");
+		break;
+	default:
+		document.write("설렁탕<br/>");
+		break;
+	}
+	
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>애니메이션</title>
+<style>
+div{
+	font-size: 20px;
+}
+	#transition{
+		width:100px;
+		height:100px;
+		background-color:red;
+		
+	}
+	#transition:hover{
+		background-color:blue;
+		width:150px;
+		margin-left:200px;
+		transition-property:all;
+		transition-duration:5s;	
+		/*transform:scale(2,2);*/
+		transform:rotate(360deg);
+	}
+</style>
+</head>
+<body>
+	<div id="transition">애니메이션</div>
+</body>
+</html>
