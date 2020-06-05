@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문자열</title>
+
+<script type="text/javascript">
+	var temp = "        hello Trim      ";
+	//length가 문자열의 길이를 저장하고 있는 속성
+	//charAt(인덱스) 인덱스 번째 문자를 리턴
+	//temp = temp.charAt(9);
+	//console.log(temp);
+	var result = "";
+	//각 문자를 순회
+	for(var i=0;i<temp.length;i=i+1){
+		//i번째 글자를 ch에 저장
+		var ch = temp.charAt(i);
+		//공백이 아니면
+		if(ch != " "){
+			//ch를 resultd 추가
+			result = result + ch;
+		}
+		
+	}
+	console.log(result);
+</script>
+	
+</head>
+<body>
+
+</body>
+</html>

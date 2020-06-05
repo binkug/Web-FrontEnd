@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>기타 제어문</title>
+<script type="text/javascript">
+	for(var i=1;i<=5;i=i+1){
+		for(var j=1;j<=i;j=j+1){
+			document.write("*");
+		}
+		document.write("<br/>");
+	}
+	
+	for( var i=1;i<=10;i=i+1){
+		if(i%4==0){
+			//4의 배수가 되는 4에서 반복문 종료
+			//break;
+			
+			//4의 배수만 제외하고 실행
+			continue;
+		}
+		document.write(i+"<br/>");
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

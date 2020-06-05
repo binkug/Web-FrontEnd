@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수</title>
+<script type="text/javascript">
+	//함수를 생성
+	function outer(){
+		//함수 안에서 만들어지 변수는 지역변수
+		var n = 1;
+		document.write("<h3>n:"+n+"</h3>");
+	}
+	//함수호출
+	outer();
+	//이 문장은 에러 - 만들지 않은 변수를 사용한 것이라서
+	//n = n + 1;
+	outer();
+	
+	//closure를 이용해서 함수 외부에서 함수 내부의 데이터 변경하기
+	function closure(){
+		
+		var n = 1;
+		//내부 함수를 만들어서 리턴
+		//내부 함수는 외부 함수의 데이터를 전부 사용 가능
+		return function(){
+			
+			document.write("<h3>클로저 n :"+n+"</h3>");
+			n = n+1;
+		}
+	}
+	
+	//외부함수를 호출해서 변수에 결과를 저장
+	//r에는 함수가 저장
+	var r = closure();
+	r();
+	r();
+</script>
+</head>
+<body>
+
+</body>
+</html>

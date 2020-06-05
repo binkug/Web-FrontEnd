@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수1</title>
+<script>
+	//함수는 독립적으로 실행
+	//별도의 메모리 영역을 가지고 생성
+
+	//image1.png ~ image3.png 출력하는 함수 만들기
+	function disp() {
+		for (var i = 1; i <= 3; i = i + 1) {
+			document
+					.write("<img src='images/image"
+				+ i 
+				+ ".png' width='256' height='256' />");
+		}
+	}
+	//함수 호출
+	disp();
+	disp();
+
+	//매개변수가 있는 함수
+	function display(n) {
+		for (var i = 1; i <= n; i = i + 1) {
+			document
+					.write("<img src='images/image"
+				+ i 
+				+ ".png' width='256' height='256' />");
+		}
+	}
+	//매개변수가 있는 함수 호출
+	display(2);
+
+	//2개의 매개변수를 받아서 더하는 함수
+	//내부에서 출력을 하면 메소드의 수행 결과를
+	//다른 곳에서 사용할 수 없음
+	function add(n1, n2) {
+		return n1 + n2;
+	}
+	//함수를 호출하고 결과를 result 에  저장
+	var result = add(10, 20);
+	//출력
+	document.write("결과:" + result);
+	//결과를 다른 곳에서 사용
+	result = add(result, 100);
+	document.write("결과:" + result);
+
+	//n 번째 피보나치 수열의 값을 리턴해주는 함수
+	//재귀로 구현
+	function fibonacci(n) {
+		//재귀는 중단 조건이 있어야 합니다.
+		if (n == 1 || n == 2) {
+			return 1;
+		}
+		return fibonacci(n - 1) + fibonacci(n - 2);
+	}
+	//alert(fibonacci(9));
+
+	var x = 10;
+	function callbyvalue(n1) {
+		n1 = n1 + 1;
+	}
+	//x는 1개(scala type)짜리 데이터 여서
+	//함수나 메소드에 대입해도 값이 절대 변경되지 않음
+	callbyvalue(x)
+	//alert(x);
+
+	var xr = [ 1, 2, 3, 4 ]
+	function callbyreference(kr) {
+		kr[0] = kr[0] + 1;
+	}
+	callbyreference(xr);
+	alert(xr);
+</script>
+</head>
+<body>
+
+</body>
+</html>
