@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax - 비동기적으로 서버로부터 데이터를 받아오기</title>
+</head>
+<body>
+	<div id="disp"></div>
+	<input type="button" value="ajax-text" id="txtbtn" />
+	<input type="text" id="inputjson" />
+	<input type="text">
+	<input type="button" value="ajax-xml" id="xmlbtn" />
+
+</body>
+<script type="text/javascript">
+	//DOM 객체 찾아오기
+	//innerHTML은 여는 태그와 닫는 태그 사이의 내용
+	//value는 input이나 txtarea 그리고 select 에서 입력하거나 선택하거나 보이는 내용
+	var disp = document.getElementById("disp");
+
+	var txtbtn = document.getElementById("txtbtn");
+
+	var inputjson = document.getElementById("inputjson");
+
+	var xmlbtn = document.getElementById("xmlbtn");
+
+	xmlbtn.addEventListener("click",
+			function(event) {
+				//ajax 객체 생성
+				var request = new XMLHttpRequest();
+				//요청 생성
+				request.open('get', '../data/tel.xml');
+				//요청전송
+				request.send('');
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						if (request.status >= 200 && request.status < 300) {
+							//읽어온 데이터 확인
+							//alert(request.responseXML);
+
+							var names = request.responseXML.getElementsByTagName("part");
+							for (var i = 0; i < names.length; i = i + 1) {
+								var name = names[i].childNodes[0].﻿﻿nodeValue;
+								disp.innerHTML += name + "<br/>";
+							}
+
+						}
+					}
+				}
+
+			});
+
+	//포커스가 옮겨질 때 이벤트 처리
+	inputjson.addEventListener("focusout", function(event) {
+		//alert("포커스 옮기기");
+
+		//ajax 객체 생성
+		var request = new XMLHttpRequest();
+		//요청 생성
+		request.open('get', '../data/data.json');
+		//요청전송
+		request.send('');
+		//확인코드
+		//alert("dd");
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				if (request.status >= 200 && request.status < 300) {
+					//읽어온 데이터 확인
+					//alert(request.responseText);
+
+					//읽어온 데이터 파싱
+					var ar = JSON.parse(request.responseText);
+					//배열의 각 요소를 순회
+					for (var i = 0; i < ar.length; i = i + 1) {
+						var obj = ar[i];
+						//데이터 출력
+						disp.innerHTML = obj.code + ":" + obj.value;
+
+					}
+				}
+			}
+		}
+	});
+
+	//이벤트처리
+	txtbtn.addEventListener("click", function(evnet) {
+		//alert("ㅋㅋ");
+
+		//ajax 객체 생성
+		var request = new XMLHttpRequest();
+		//alert(request);
+
+		//요청 경로 생성
+		request.open('GET', '../data/data.txt');
+		//요청 전송
+		request.send('');
+		//alert("gg");
+
+		//상태 변화가 발생한 경우 처리할 콜백 메소드 생성
+		request.onreadystatechange = function() {
+			//정상적으로 응답이 전부 오면
+			if (request.readyState == 4) {
+				//정상적으로 응답이 온 경우
+				if (request.status >= 200 && request.status < 300) {
+					//데이터 출력
+					//alert(request.responseText);
+
+					//disp 영역에 출력
+					disp.innerHTML = request.responseText;
+				}
+			}
+		}
+	});
+</script>
+</html>
