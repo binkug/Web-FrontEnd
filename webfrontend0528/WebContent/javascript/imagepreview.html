@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 핸들링</title>
+<script type="text/javascript">
+	//window에 load 이벤트가 발생한 후 
+	//body에 있는 내용을 전부 읽어서 메모리에 로드하고 난 후
+	window.addEventListener("load",function(event){
+		
+		//file의 선택이 변경되면 함수를 호출
+		var imginp = document.getElementById("imginp");
+		//값이 변경되면 함수를 호출
+		imginp.addEventListener("change",function(event){
+			//함수 호출
+			readURL(this);
+		});
+		
+	});
+	
+	//이벤트 처리 함수
+	var readURL = function(input){
+		//선택한 파일이 있는지 확인
+		if(input.files && input.files[0]){
+			//선택한 파일 이름 가져오기
+			var filename = input.files[0].name;
+			//파일 읽기 객체 생성
+			var reader = new FileReader();
+			//파일 읽기 - 비동기적으로 읽음
+			//바로 뒤에 코드를 작성하면 파일을 읽기전 수행
+			reader.readerAsDataURL(intput.files[0]);
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>이미지 미리보기</h2>
+	<form id="form1">
+	<!-- 이미지 파일만 선택할 수 있도록 생성 -->
+		<input type="file" id ="imginp" accept="image/*" />
+		<img src= "" id ="img" width = "200" height="200" border="1"/>
+	</form>
+</body>
+</html>
