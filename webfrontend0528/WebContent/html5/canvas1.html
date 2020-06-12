@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스</title>
+</head>
+<body>
+	<canvas id="canvas" width="1024" height="1024"></canvas>
+</body>
+<script>
+	//canvas 태그 찾아오기
+	var canvas = document.getElementById("canvas");
+	
+	//context 객체 찾아오기
+	var context = canvas.getContext('2d');
+	//그림 그리기
+	context.fillstyle = 'blue';
+	context.globalAlpha = 0.5;
+	context.fillRect(0,0, 200, 300);
+	context.strokeStyle = '#ff00ff';
+	context.strokeRect(400,350, 200, 300);
+	context.clearRect(0,0,100,80);
+</script>
+</html>

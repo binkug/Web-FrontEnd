@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>채팅</title>
+</head>
+<body>
+	닉네임<input type="text" id="nickname" size="20"/>
+	보내는 메세지<input type="text" id=message size="50"/>
+	<input type="button" value="보내기" id="sendbtn"/><br/>
+	<!-- rows가 줄 수이고 cols가 옆으로의 수이다  그리고 </textarea>는 같은 한 줄에 있어야 한다.-->
+	받은 메세지<textarea id="disp" rows="20" cols="80"></textarea>
+</body>
+
+<script>
+	var date = new Date();
+	//DOM 객체 찾아오기
+	var nickname = document.getElementById("nickname");
+	var message = document.getElementById("message");
+	var sendbtn = document.getElementById("sendbtn");
+	var disp = document.getElementById("disp");
+	
+	//웹 소켓 객체 생성
+	var webSocket = new WebSocket("ws://192.168.0.51:9000/webfrontend/chat");
+	
+	//연결 되었을때 수행할 내용	
+	webSocket.addEventListener("open",function(event){
+		//채팅은 새로운 메세지를 위에 출력
+		disp.value = "접속에 성공 : "+disp.value+date.toLocaleString();
+	});
+	
+	//메세지가 온 경우
+	webSocket.addEventListener("message",function(event){
+		//채팅은 새로운 메세지를 위에 출력
+		disp.value = event.data + "\n" + disp.value+date.toLocaleString();
+	});
+	
+	//버튼을 눌렀을 때 메세지 보내기
+	sendbtn.addEventListener("click",function(event){
+		//메세지와 닉네임이 함께 보내지기 위해 두개를 동시에 불러온다.
+		var m = nickname.value + ":" + message.value+date.toLocaleString();
+		webSocket.send(m);
+		message.value='';
+		
+	});
+	
+	message.addEventListener("keydown",function(event){
+		var e = event || window.event;
+		var keycode = ('which' in e) ? e.which : e.keyCode;
+		if(keycode == 13){
+			var m = nickname.value + ":" + message.value+date.toLocaleString();
+			webSocket.send(m);
+			message.value='';
+		}
+	});
+	
+</script>
+</html>

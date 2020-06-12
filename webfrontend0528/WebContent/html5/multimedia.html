@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>멀티 미디어</title>
+</head>
+<body>
+	<video width="320 " height="320" controls="controls">
+		<!-- Painting.mp4를 재생할 수 있으면 재생하고 그렇지 않으면 다음 걸 재생하게 된다 -->
+		<source src="../resource/Painting.mp4" />
+		<source src="../resouce/IPhone3G.mov" />
+	</video>
+
+	<button id="btn">재생</button>
+	<!-- <input type="button" id ="btn2"/> -->
+	<video width="320 " height="320" id="video">
+		<!-- Painting.mp4를 재생할 수 있으면 재생하고 그렇지 않으면 다음 걸 재생하게 된다 -->
+		<source src="../resource/Painting.mp4" />
+		<source src="../resouce/IPhone3G.mov" />
+	</video>
+
+</body>
+<script>
+	//버튼과 비디오 찾아오기
+	var btn = document.getElementById("btn");
+	var video = document.getElementById("video");
+	/* var btn2 = document.getElementById("btn2"); */
+	
+	btn.addEventListener("click",function(event){
+		//재생 중인지 확인
+		//!video.paused : 비디오가 중지가 아니면
+		if(!video.paused && !video.ended){
+			video.pause();
+			btn.innerHTML = "재생";
+			/* btn2.value = "재생"; */
+		}else{
+			video.play();
+			btn.innerHTML="중지";
+			/* btn2.value = "중지"; */
+		}
+	});
+</script>
+</html>

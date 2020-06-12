@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax</title>
+<style type="text/css">
+	#useremail{
+		margin-bottom: 1em;
+	}
+	#user_name{
+		margin-bottom: 1em;
+	}
+</style>
+</head>
+<body>
+	<h3>ajax 요청</h3>
+	<!-- 버튼은 id가 필수라고 생각하면 된다. -->
+	<input type="button" id="ajaxbtn" value="텍스트 파일 읽기">
+	<!-- 출력 영역 -->
+	<div id="disp"></div><br/>
+
+	<!-- form의 데이터를 ajax를  활용해서 전송하기 -->
+	<form id="formid">
+		<div id="userdiv" align="center">
+			이메일<input type="email" name="user_email" id="useremail"><br />
+			이름<input type="text" name="user_name" id="user_name"><br /> 
+			<input type="button" value="폼 전송 ajax" id="ajaxform" />
+		</div>
+	</form>
+
+</body>
+<script>
+	//바디에 있는 태그 찾아오기
+	var ajaxbtn = document.getElementById("ajaxbtn");
+	var disp = document.getElementById("disp");
+	var userdiv = document.getElementById("userdiv");
+	var formid = document.getElementById("formid");
+	var ajaxform = document.getElementById("ajaxform");
+	
+	ajaxform.addEventListener("click",function(event){
+		//폼안에 입력된 데이터를 하나로 만들기
+		var formdata = new FormData(formid);
+		//데이터 추가
+		formdata.append("age",50);
+		//요청을 생성 ajax 객체 생성
+		var request = new XMLHttpRequest();
+		request.open('post','../resource/process.jsp');
+		﻿//ajax 객체에 넣어서 전송
+		//﻿ajax객체.send(변수명); 서버에게 전달
+		request.send(formdata);
+		
+		//응답 처리
+		request.addEventListener('load',function(event){
+			userdiv.innerHTML = event.target.responseText;
+		});	
+	});
+	
+	//버튼 누를 때 동작
+	ajaxbtn.addEventListener("click",function(event){
+		var request = new XMLHttpRequest();
+		request.open('get','../resource/textfile.txt');
+		request.send();
+		
+		//비동기라서 전송이 완료되었을 때 수행할 내용
+		request.addEventListener('load',function(event){
+			//disp에 가져온 내용 출력
+			//json 이나 xml 이면 파싱을 수행
+			/* ﻿
+			   =>이벤트 처리 함수의 매개변수로 처리,
+			   =>매개변수.target.responseText - XML 형식을 제외한 데이터
+               =>매개변수.target.responseXML
+﻿            */
+			//이 데이터를 넣어 줄 태그의 id를 이용해서 사용한다.
+            //disp.innerHTML = event.target.responseText;
+            //토글키를 활용하여 버튼을 누르면 보여지고 다시 한번 더 누르면 숨겨진다.
+            if(disp.innerHTML == ''){
+            	disp.innerHTML = event.target.responseText;
+            }else{
+            	disp.innerHTML = '';
+            }
+               
+		});
+	});
+</script>
+</html>
